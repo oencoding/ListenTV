@@ -41,13 +41,17 @@ def getFileMD5(file_fullpath):
 def download_to_file(fileurl, filefull_path, overwrite=False):
     if overwrite and os.path.exists(filefull_path):
         return
-    try:
-        f = urllib.urlopen(fileurl)
-        data = f.read()
-        with open(filefull_path, "wb") as code:
-            code.write(data)
-    except Exception, e:
-        print e
+
+    urllib.urlretrieve(fileurl,filefull_path);
+
+
+    # try:
+    #     f = urllib.urlopen(fileurl)
+    #     data = f.read()
+    #     with open(filefull_path, "wb") as code:
+    #         code.write(data)
+    # except Exception, e:
+    #     print e
 
 
 def save(fileurl, filefull_path, overwrite=False):

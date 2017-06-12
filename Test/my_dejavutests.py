@@ -90,8 +90,8 @@ if __name__ == '__main__':
     pass
 
     # files_root = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../data/internet/samples60')
-    files_root = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../data/songs')
-    fingerprint_op(files_root,['mp3'])
+    files_root = os.path.join('/Users/simon/Desktop/TSData/aaa')
+    fingerprint_op(files_root,['mp3','wav'])
 
     # files_root = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../data/wanglei/TV10/specialfocus_2016_08_06')
     # fingerprint_op(files_root,['wav'])

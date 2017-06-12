@@ -30,6 +30,9 @@ def find_voice():
         return jsonify(result)
     filename = random_str(32) + file.filename
     file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
+
     try:
         filename = random_str(32) + file.filename
 
@@ -45,7 +48,7 @@ def find_voice():
     try:
         # inference_result = match_fp_service(file_path)
         inference_result = dejavu_match_service(file_path)
-        os.remove(file_path)
+        # os.remove(file_path)
     except Exception:
         raise
         result['state'] = 0

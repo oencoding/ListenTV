@@ -53,14 +53,13 @@ MAX_HASH_TIME_DELTA = 200
 # If True, will sort peaks temporally for fingerprinting;
 # not sorting will cut down number of fingerprints, but potentially
 # affect performance.
-PEAK_SORT = False
+PEAK_SORT = True
 
 ######################################################################
 # Number of bits to throw away from the front of the SHA1 hash in the
 # fingerprint calculation. The more you throw away, the less storage, but
 # potentially higher collisions and misclassifications when identifying songs.
-# FINGERPRINT_REDUCTION = 20
-FINGERPRINT_REDUCTION = 10
+FINGERPRINT_REDUCTION = 20
 
 
 def fingerprint(channel_samples, Fs=DEFAULT_FS,
@@ -144,6 +143,7 @@ def generate_hashes(peaks, fan_value=DEFAULT_FAN_VALUE):
     for i in range(len(peaks)):
         for j in range(1, fan_value):
             if (i + j) < len(peaks):
+
                 freq1 = peaks[i][IDX_FREQ_I]
                 freq2 = peaks[i + j][IDX_FREQ_I]
                 t1 = peaks[i][IDX_TIME_J]
