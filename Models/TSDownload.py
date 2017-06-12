@@ -4,7 +4,7 @@
 import warnings
 warnings.filterwarnings("ignore")
 import os
-import urllib2
+import urllib
 from time import sleep
 import m3u8
 import multiprocessing
@@ -12,8 +12,8 @@ from Utility.TimeTools import *
 import hashlib
 from dejavu import Dejavu
 from Models import Config
-from functools import partial
-from Utility.Download import request
+import requests
+
 import json
 
 config= {
@@ -28,7 +28,9 @@ config= {
 
 
 def getFileMD5(file_fullpath):
-    result = ""
+    result = "NO"
+    if not os.path.exists(file_fullpath):
+        return result
     with open(file_fullpath, 'rb') as f:
         md5obj = hashlib.md5()
         md5obj.update(f.read())
@@ -40,17 +42,17 @@ def download_to_file(fileurl, filefull_path, overwrite=False):
     if overwrite and os.path.exists(filefull_path):
         return
     try:
-        f = urllib2.urlopen(fileurl)
+        f = urllib.urlopen(fileurl)
         data = f.read()
         with open(filefull_path, "wb") as code:
             code.write(data)
     except Exception, e:
-        pass
+        print e
 
 
 def save(fileurl, filefull_path, overwrite=False):
     # print(u'开始保存：', fileurl)
-    img = request.get(fileurl, 3)
+    img = requests.get(fileurl)
     f = open(filefull_path, 'wb')
     f.write(img.content)
     f.close()
@@ -69,7 +71,7 @@ def download():
         listfile_name = url.split('/')[-1]
 
         # 初始化提取信息
-        processInfo = {channel_name: {'latest': '', 'action': '正在初始化', 'info': '正在初始化'}}
+        processInfo = {channel_name: {'latest': '-', 'action': 'init process', 'info': 'init process'}}
         showProcessInfo(processInfo)
 
         # 新建文件夹

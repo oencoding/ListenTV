@@ -29,5 +29,5 @@ TS_URLS=['http://cn150.videocc.net/vod1/cctv14/01.m3u8',
         ]
 
 #TS_URLS=['http://ver007.com/2016/07/25/706.html']
-TS_SAVE_PATH='/home/zhangxinming/Desktop/TSData'
-# TS_SAVE_PATH='/tmp/TSData'
+# TS_SAVE_PATH='/home/zhangxinming/Desktop/TSData'
+TS_SAVE_PATH='/Users/simon/Desktop/TSData'
